@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:5.2.0'
+    }
+}
+
+plugins {
+    id 'java'
+
+    id 'application'
+
+    id 'jacoco'
+
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
+
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile ("com.fazecast:jSerialComm:[2.0.0,3.0.0)")
+    testCompile ("junit:junit:4.12")
+}
+
+application {
+    mainClassName = 'app.Launcher'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': application.mainClassName
+    }
+}
+
+//C:\IT\jdk-15.0.1\bin\java.exe -Dfile.encoding=windows-1251 --module-path c:\IT\javafx-sdk-15.0.1\lib --add-modules=javafx.controls,javafx.fxml -jar C:\Users\lartsev\Documents\ли
+//чное\ОТПРАВИТЬ\canbus_gui\build\libs\canbus_gui-1.0-SNAPSHOT-all.jar

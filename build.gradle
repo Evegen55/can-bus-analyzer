@@ -31,8 +31,8 @@ repositories {
 }
 
 dependencies {
-    compile ("com.fazecast:jSerialComm:[2.0.0,3.0.0)")
-    testCompile ("junit:junit:4.12")
+    implementation ("com.fazecast:jSerialComm:[2.0.0,3.0.0)")
+    testImplementation ("junit:junit:4.12")
 }
 
 application {

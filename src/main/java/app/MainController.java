@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -94,6 +95,19 @@ public class MainController {
             canBusDataTableView.getItems().clear();
             dataHolders.clear();
             //TODO 25/11/2020 lartsev: write data here
+            SerialPort comPort = commPorts[selectedIndexOfComPort];
+            comPort.openPort();
+            comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 0, 0);
+            InputStream in = comPort.getInputStream();
+            try
+            {
+                for (int j = 0; j < 1000; ++j)
+                    System.out.print((char)in.read());
+                in.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            comPort.closePort();
         }
     }
 

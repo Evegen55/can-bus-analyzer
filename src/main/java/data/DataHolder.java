@@ -10,7 +10,12 @@ public class DataHolder {
 
     private int frequencyCounter;
 
-    public DataHolder(final String deviceId, final int lengthOfCanData, final String[] canData, final int frequencyCounter) {
+    public DataHolder(
+            final String deviceId,
+            final int lengthOfCanData,
+            final String[] canData,
+            final int frequencyCounter
+    ) {
         this.deviceId = deviceId;
         this.lengthOfCanData = lengthOfCanData;
         this.canData = canData;

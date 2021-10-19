@@ -1,9 +1,10 @@
 package data;
 
+@Deprecated
 public enum SimpleDict {
 
-    CAN_ID_5B8 ("CARMINAT_1"),
-    CAN_ID_3DF ("CARMINAT_2");
+    CAN_ID_5B8 ("radiosat_1"),
+    CAN_ID_3DF ("radiosat_1");
 
     private final String canBusDeviceName;
 

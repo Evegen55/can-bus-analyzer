@@ -8,27 +8,28 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="878.0" prefWidth="1273.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MainController">
+<AnchorPane prefHeight="878.0" prefWidth="1273.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MainController">
     <children>
-        <TableView fx:id="canBusDataTableView" layoutX="15" layoutY="40.0" prefHeight="842.0" prefWidth="751.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+        <TableView fx:id="canBusDataTableView" layoutX="15" layoutY="70.0" prefHeight="803.0" prefWidth="1013.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="70.0">
             <columns>
-                <TableColumn fx:id="canIdTableColumn" prefWidth="60" text="ID" />
+                <TableColumn fx:id="canIdTableColumn" prefWidth="60.0" text="ID" />
                 <TableColumn fx:id="lengthTableColumn" prefWidth="60" text="length" />
                 <TableColumn fx:id="canDataTableColumn" prefWidth="260" text="canData" />
-                <TableColumn fx:id="frequencyCounterTableColumn" prefWidth="120" text="frequency counter" />
-                <TableColumn fx:id="deviceNameTableColumn" prefWidth="250" text="device name" />
+                <TableColumn fx:id="frequencyCounterTableColumn" prefWidth="85.0" text="freq count" />
+                <TableColumn fx:id="uniqueCanMessagesTableColumn" prefWidth="260" text="unique can messages" />
+                <TableColumn fx:id="deviceNameTableColumn" prefWidth="285.0" text="device name" />
             </columns>
         </TableView>
-        <HBox id="menusAndButtons" layoutX="810.0" layoutY="14.0" prefHeight="203.0" prefWidth="452.0" spacing="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+        <HBox id="menusAndButtons" layoutX="5.0" layoutY="7.0" prefHeight="55.0" prefWidth="514.0" spacing="5.0" AnchorPane.rightAnchor="754.0" AnchorPane.topAnchor="7.0">
             <children>
-                <VBox id="buttons" prefHeight="88.0" prefWidth="244.0" spacing="5.0">
+                <VBox id="buttons" prefHeight="113.0" prefWidth="241.0" spacing="5.0">
                     <children>
                         <Button fx:id="refreshComPortsButton" onAction="#refreshComPortsButtonClicked" prefHeight="26.0" prefWidth="193.0" text="Refresh COM ports" />
-                        <Button fx:id="startScanCANBusViaComPortButton" onAction="#startScanCANBusViaComPortButtonClicked" prefHeight="26.0" prefWidth="194.0" text="Scan CAN bus start/stop" />
-                        <Button fx:id="startScanCANDataFileButton" onAction="#startScanCANDataFileButtonClicked" prefHeight="26.0" prefWidth="203.0" text="Scan file with CAN data" />
+                      <ComboBox fx:id="existedComPortsComboBox" prefHeight="26.0" prefWidth="315.0" />
                     </children>
                 </VBox>
-                <ComboBox fx:id="existedComPortsComboBox" prefHeight="26.0" prefWidth="315.0" />
+                  <Button fx:id="startScanCANDataFileButton" onAction="#startScanCANDataFileButtonClicked" prefHeight="26.0" prefWidth="203.0" text="Scan file with CAN data" />
+                  <Button fx:id="startScanCANBusViaComPortButton" onAction="#startScanCANBusViaComPortButtonClicked" prefHeight="26.0" prefWidth="194.0" text="Scan CAN bus start/stop" />
             </children>
         </HBox>
 

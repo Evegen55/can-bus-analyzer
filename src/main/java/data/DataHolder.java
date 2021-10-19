@@ -1,12 +1,17 @@
 package data;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import static data.DeviceInfoStorage.DEVICE_INFO;
 
 public class DataHolder {
 
     private String deviceId;
     private int lengthOfCanData;
     private String[] canData;
+    private Set<String> uniqueCanMessages;
 
     private int frequencyCounter;
 
@@ -20,6 +25,9 @@ public class DataHolder {
         this.lengthOfCanData = lengthOfCanData;
         this.canData = canData;
         this.frequencyCounter = frequencyCounter;
+        HashSet<String> uniqueCanMessages = new HashSet<>();
+        uniqueCanMessages.add(Arrays.toString(canData));
+        this.uniqueCanMessages = uniqueCanMessages;
     }
 
     public int getLengthOfCanData() {
@@ -39,13 +47,7 @@ public class DataHolder {
     }
 
     public String getDeviceName() {
-        SimpleDict simpleDict = null;
-        try {
-            simpleDict = SimpleDict.valueOf("CAN_ID_" + deviceId);
-        } catch (Exception e) {
-            System.out.println("unknown " + "CAN_ID_ " + deviceId);
-        }
-        return simpleDict == null ? "" : simpleDict.getCanBusDeviceName();
+        return DEVICE_INFO.get(deviceId);
     }
 
     public int getFrequencyCounter() {
@@ -54,5 +56,9 @@ public class DataHolder {
 
     public void addCounter() {
         frequencyCounter += 1;
+    }
+
+    public Set<String> getUniqueCanMessages() {
+        return uniqueCanMessages;
     }
 }

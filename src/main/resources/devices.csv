@@ -1,4 +1,18 @@
 can_id,device_name
-5B8,radiosat_1
-3DF,radiosat_1
-12E,TODO
+5B8,Radiosat, life probe
+3DF,Radiosat, enable sign
+12E,u
+5E7,u
+5D8,u (after enable navi and tomtom)
+5A8,u
+548,u
+558,u
+568,u
+57F,u (after enable navi and tomtom)
+578,u
+58F,u
+58F,u
+588,u
+63E,Navi pad, joystick
+63D,Navi pad, 8 buttons around joystick
+63F,u (after enable navi and tomtom)

@@ -1,0 +1,29 @@
+Navi pad
+
+-joystick - CAN ID 63E
+63E 8 0 5 F2 F2 F2 F2 F2 F2 - turn left 1 step
+63E 8 0 6 F2 F2 F2 F2 F2 F2 - turn right 1 step
+63E 8 1 0 F2 F2 F2 F2 F2 F2 - pressed
+
+--joystick tilt and push
+63E 8 10 0 F2 F2 F2 F2 F2 F2 - right
+63E 8 20 0 F2 F2 F2 F2 F2 F2 - top
+63E 8 30 0 F2 F2 F2 F2 F2 F2 - left
+63E 8 40 0 F2 F2 F2 F2 F2 F2 - bottom
+
+-buttons around joystick - CAN ID 63D
+63D 8 0 F2 F2 F2 F2 F2 F2 F2 - |__ (top left) button
+63D 8 1 F2 F2 F2 F2 F2 F2 F2 - Back (top center) button
+63D 8 2 F2 F2 F2 F2 F2 F2 F2 - __| (top left) button
+63D 8 3 F2 F2 F2 F2 F2 F2 F2 - INFO route (center right) button
+63D 8 4 F2 F2 F2 F2 F2 F2 F2 - MENU set (bottom right) button
+63D 8 5 F2 F2 F2 F2 F2 F2 F2 - LIGHT dark (bottom center right) button
+63D 8 6 F2 F2 F2 F2 F2 F2 F2 - REPEAT mute (bottom center left) button
+63D 8 7 F2 F2 F2 F2 F2 F2 F2 - DEST home (bottom left) button
+63D 8 8 F2 F2 F2 F2 F2 F2 F2 - MAP 2D 3D (center left) button
+
+
+
+
+
+

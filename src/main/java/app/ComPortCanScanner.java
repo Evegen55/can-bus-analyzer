@@ -15,6 +15,8 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ComPortCanScanner {
 
@@ -22,6 +24,8 @@ public class ComPortCanScanner {
     private ComboBox<String> existedComPortsComboBox;
     private SerialPort[] commPorts;
     private TableView<DataHolder> canBusDataTableView;
+
+    private static final Logger LOGGER = Logger.getLogger(MainController.class.getName());
 
     public ComPortCanScanner(
             final Button startStopScanCANBusViaComPortButton,
@@ -90,33 +94,39 @@ public class ComPortCanScanner {
             if (!canMessagesBuffer.isEmpty()) {
                 String canMessage = canMessagesBuffer.poll();
                 String[] split = canMessage.split(" ");
-                if (split[0].length() > 2) {
-                    final int lengthOfCanDataByCAN = Integer.parseInt(split[1]);
-                    final int lengthOfCanDataActual = split.length - 2;
-                    final String[] canData;
-                    if (lengthOfCanDataByCAN == lengthOfCanDataActual) {
-                        canData = new String[lengthOfCanDataByCAN]; //0 0 69 0 46 2F BB BB
-                        System.arraycopy(split, 2, canData, 0, lengthOfCanDataByCAN - 1 + 1);
-                        dataHolder = new DataHolder(split[0], lengthOfCanDataByCAN, canData, 1);
+                String deviceId = split[0];
+                if (deviceId.length() >= 2) {
+                    try {
+                        final int lengthOfCanDataByCAN = Integer.parseInt(split[1]);
+                        final int lengthOfCanDataActual = split.length - 2;
+                        final String[] canData;
+                        if (lengthOfCanDataByCAN == lengthOfCanDataActual) {
+                            canData = new String[lengthOfCanDataByCAN]; //0 0 69 0 46 2F BB BB
+                            System.arraycopy(split, 2, canData, 0, lengthOfCanDataByCAN - 1 + 1);
+                            dataHolder = new DataHolder(deviceId, lengthOfCanDataByCAN, canData, 1);
 
-                        if (!stringDataHolderMap.containsKey(split[0])) {
-                            stringDataHolderMap.put(split[0], dataHolder);
-                        } else {
-                            DataHolder dataHolderPrev = stringDataHolderMap.get(split[0]);
-                            String[] canDataPrev = dataHolderPrev.getCanData();
-                            for (int i = 0; i < canData.length; i++) {
-                                if (!canDataPrev[i].equals(canData[i])) {
-                                    canDataPrev[i] = "*";
+                            if (!stringDataHolderMap.containsKey(deviceId)) {
+                                stringDataHolderMap.put(deviceId, dataHolder);
+                            } else {
+                                DataHolder dataHolderPrev = stringDataHolderMap.get(deviceId);
+                                String[] canDataPrev = dataHolderPrev.getCanData();
+                                for (int i = 0; i < canData.length; i++) {
+                                    if (!canDataPrev[i].equals(canData[i])) {
+                                        canDataPrev[i] = "*";
+                                    }
                                 }
+                                dataHolderPrev.addCounter();
+                                dataHolderPrev.getUniqueCanMessages().add(dataHolder.getStringCanData());
                             }
-                            dataHolderPrev.addCounter();
-                            dataHolderPrev.getUniqueCanMessages().add(dataHolder.getStringCanData());
+
+                            ObservableList<DataHolder> dataHolderObservableList = FXCollections.observableArrayList(stringDataHolderMap.values());
+                            canBusDataTableView.getItems().setAll(dataHolderObservableList);
                         }
-
-                        ObservableList<DataHolder> dataHolderObservableList = FXCollections.observableArrayList(stringDataHolderMap.values());
-                        canBusDataTableView.getItems().setAll(dataHolderObservableList);
+                    } catch (Exception e) {
+                        LOGGER.log(Level.WARNING, "Error on data from " + deviceId, e);
                     }
-
+                } else {
+                    System.out.println(deviceId);
                 }
             }
         }

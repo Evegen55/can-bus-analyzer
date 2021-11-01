@@ -58,6 +58,8 @@ public class MainController {
     @FXML
     public TableColumn<DataHolder, String> deviceNameTableColumn;
     @FXML
+    public TableColumn<DataHolder, String> deviceCanAreaTableColumn;
+    @FXML
     public TableColumn<DataHolder, ComboBox<String>> uniqueCanMessagesTableColumn;
 
     //== methods for initialisation main controller ====================================================================
@@ -73,6 +75,7 @@ public class MainController {
         canDataTableColumn.setCellValueFactory(new PropertyValueFactory<>("stringCanData"));//mapped to DataHolder.getStringCanData()
         frequencyCounterTableColumn.setCellValueFactory(new PropertyValueFactory<>("frequencyCounter"));//mapped to DataHolder.getFrequencyCounter()
         deviceNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("deviceName"));//mapped to DataHolder.getDeviceName()
+        deviceCanAreaTableColumn.setCellValueFactory(new PropertyValueFactory<>("deviceCanArea"));//mapped to DataHolder.getDeviceCanArea()
         uniqueCanMessagesTableColumn.setCellValueFactory(param -> { //custom mappings
             final Set<String> uniqueCanMessages1 = param.getValue().getUniqueCanMessages();
             final ObservableList<String> uniqueCanMessages = FXCollections.observableArrayList(uniqueCanMessages1);

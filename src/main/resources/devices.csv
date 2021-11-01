@@ -1,18 +1,51 @@
-can_id,device_name
-5B8,Radiosat, life probe
-3DF,Radiosat, enable sign
-12E,u
-5E7,u
-5D8,u (after enable navi and tomtom)
-5A8,u
-548,u
-558,u
-568,u
-57F,u (after enable navi and tomtom)
-578,u
-58F,u
-58F,u
-588,u
-63E,Navi pad, joystick
-63D,Navi pad, 8 buttons around joystick
-63F,u (after enable navi and tomtom)
+can_id,device_name,can_area
+5B8,Radiosat, life probe,media
+3DF,Radiosat, enable sign,media
+5E7,u,media
+5D8,u (after enable navi and tomtom),media
+5A8,u,media
+548,u,media
+558,u,media
+568,u,media
+57F,u (after enable navi and tomtom),media
+578,u,media
+58F,u,media
+588,u,media
+63E,Navi pad, joystick,media
+63D,Navi pad, 8 buttons around joystick,media
+63F,u (after enable navi and tomtom),media
+352,u,obd2
+391,u,obd2
+671,u,obd2
+12E,u,obd2
+186,u,obd2
+18A,u,obd2
+1F6,u,obd2
+212,u,obd2
+242,u,obd2
+29A,u,obd2
+29C,u,obd2
+2F8,u,obd2
+354,u,obd2
+35C,u,obd2
+4F8,u,obd2
+500,u,obd2
+511,u,obd2
+534,u,obd2
+552,u,obd2
+5D7,u,obd2
+5DA,u,obd2
+5DE,u,obd2
+5E9,u,obd2
+5EE,u,obd2
+62B,u,obd2
+653,u,obd2
+665,u,obd2
+666,u,obd2
+66A,u,obd2
+66F,u,obd2
+68B,u,obd2
+69F,u,obd2
+6F8,u,obd2
+6FB,u,obd2
+C6,u,obd2

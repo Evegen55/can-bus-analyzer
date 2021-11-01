@@ -47,7 +47,11 @@ public class DataHolder {
     }
 
     public String getDeviceName() {
-        return DEVICE_INFO.get(deviceId);
+        return DEVICE_INFO.get(deviceId).getDeviceName();
+    }
+
+    public String getDeviceCanArea() {
+        return DEVICE_INFO.get(deviceId).getCanArea();
     }
 
     public int getFrequencyCounter() {

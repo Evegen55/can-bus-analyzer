@@ -47,11 +47,13 @@ public class DataHolder {
     }
 
     public String getDeviceName() {
-        return DEVICE_INFO.get(deviceId).getDeviceName();
+        DeviceInfoStorage.DeviceStoredInfo deviceStoredInfo = DEVICE_INFO.get(deviceId);
+        return deviceStoredInfo == null ? "" : deviceStoredInfo.getDeviceName();
     }
 
     public String getDeviceCanArea() {
-        return DEVICE_INFO.get(deviceId).getCanArea();
+        DeviceInfoStorage.DeviceStoredInfo deviceStoredInfo = DEVICE_INFO.get(deviceId);
+        return deviceStoredInfo == null ? "" : deviceStoredInfo.getCanArea();
     }
 
     public int getFrequencyCounter() {

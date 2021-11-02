@@ -124,6 +124,7 @@ public class MainController {
 
     public void startScanCANDataFileButtonClicked(final ActionEvent actionEvent) {
         final FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File("."));
         File file = fileChooser.showOpenDialog(window);
         if (fileCanDataScanner == null) {
             fileCanDataScanner = new FileCanDataScanner(dataHolders, canBusDataTableView);

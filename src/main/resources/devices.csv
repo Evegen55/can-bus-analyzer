@@ -1,6 +1,6 @@
 can_id,device_name,can_area
-5B8,Radiosat, life probe,media
-3DF,Radiosat, enable sign,media
+5B8,Radiosat life probe,media
+3DF,Radiosat enable sign,media
 5E7,u,media
 5D8,u (after enable navi and tomtom),media
 5A8,u,media
@@ -9,7 +9,7 @@ can_id,device_name,can_area
 568,u,media
 57F,u (after enable navi and tomtom),media
 578,u,media
-58F,u,media
+58F,audio control below steering wheel,media
 588,u,media
 63E,Navi pad, joystick,media
 63D,Navi pad, 8 buttons around joystick,media
@@ -17,9 +17,11 @@ can_id,device_name,can_area
 352,u,obd2
 391,u,obd2
 671,u,obd2
+121,u,media
 12E,u,obd2
 186,u,obd2
 18A,u,obd2
+1C1,u,media
 1F6,u,obd2
 212,u,obd2
 242,u,obd2
@@ -28,9 +30,11 @@ can_id,device_name,can_area
 2F8,u,obd2
 354,u,obd2
 35C,u,obd2
+3CF,u,media
 4F8,u,obd2
 500,u,obd2
 511,u,obd2
+521,u,media
 534,u,obd2
 552,u,obd2
 5D7,u,obd2

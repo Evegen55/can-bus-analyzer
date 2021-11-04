@@ -39,14 +39,14 @@ public class ComPortCanScanner {
         this.canBusDataTableView = canBusDataTableView;
     }
 
-    boolean isComPortScanned = false;
+    ThreadSafeBoolFlag isComPortScanned = new ThreadSafeBoolFlag();
     //first thread reads from com and write to a buffer
     //second thread reads from buffer, form can-messages and write into can-messages buffer
     //third thread reads messages from buffer, validate them and update GUI with new data
     final ConcurrentLinkedDeque<Integer> charBuffer = new ConcurrentLinkedDeque<>();
     final ConcurrentLinkedDeque<String> canMessagesBuffer = new ConcurrentLinkedDeque<>();
     SerialPort comPort;
-    boolean isComPortOpened = false;
+    ThreadSafeBoolFlag isComPortOpened = new ThreadSafeBoolFlag();
 
     final Runnable runnableReaderFromComPort = () -> {
         final int selectedIndexOfComPort = existedComPortsComboBox
@@ -54,13 +54,15 @@ public class ComPortCanScanner {
                 .getSelectedIndex();
         if (selectedIndexOfComPort >= 0) {
             comPort = commPorts[selectedIndexOfComPort];
-            isComPortOpened = comPort.openPort();
-            if (isComPortOpened) {
+            isComPortOpened.set(comPort.openPort());
+            if (isComPortOpened.get()) {
                 comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 0, 0);
                 try (InputStream in = comPort.getInputStream()) {
-                    while (isComPortScanned) {
+                    while (isComPortScanned.get()) {
                         int read = in.read();
-                        charBuffer.offer(read);
+                        if (read != -1) {
+                            charBuffer.offer(read);
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -71,13 +73,13 @@ public class ComPortCanScanner {
 
     final Runnable readerCanMessagesFromBuffer = () -> {
         StringBuilder sb = new StringBuilder();
-        while (isComPortScanned) {
+        while (isComPortScanned.get()) {
             if (!charBuffer.isEmpty()) {
                 Integer value = charBuffer.poll();
                 char readFromBuffer = (char) value.intValue();
                 if (readFromBuffer != '\r') {
                     if (readFromBuffer == '\n') {
-                        canMessagesBuffer.offer(sb.toString());
+                        canMessagesBuffer.offer(sb.toString()); //TODO print to log file line by line
                         sb = new StringBuilder();
                     } else {
                         sb.append(readFromBuffer);
@@ -89,7 +91,7 @@ public class ComPortCanScanner {
 
     final Runnable updateUiFromComPort = () -> {
         Map<String, DataHolder> stringDataHolderMap = new HashMap<>();
-        while (isComPortScanned) {
+        while (isComPortScanned.get()) {
             DataHolder dataHolder;
             if (!canMessagesBuffer.isEmpty()) {
                 String canMessage = canMessagesBuffer.poll();
@@ -138,10 +140,10 @@ public class ComPortCanScanner {
     Future<?> submitUpdateUiFromComPort;
 
     public void startStopScanCANBusViaComPortButtonClicked() {
-        if (isComPortScanned) {
-            isComPortScanned = false;
-            if (isComPortOpened) {
-                isComPortOpened = !comPort.closePort();
+        if (isComPortScanned.get()) {
+            isComPortScanned.swap();
+            if (isComPortOpened.get()) {
+                isComPortOpened.set(!comPort.closePort());
             }
             while (!submitReaderFromComPort.isCancelled() &&
                    !submitReaderCanMessagesFromBuffer.isCancelled() &&
@@ -152,7 +154,7 @@ public class ComPortCanScanner {
             }
             startStopScanCANBusViaComPortButton.setText("Start scan CAN bus");
         } else {
-            isComPortScanned = true;
+            isComPortScanned.swap();
             canBusDataTableView.getItems().clear();
             while ((submitReaderFromComPort == null || submitReaderFromComPort.isDone()) &&
                    (submitReaderCanMessagesFromBuffer == null || submitReaderCanMessagesFromBuffer.isDone()) &&
@@ -164,4 +166,24 @@ public class ComPortCanScanner {
             }
         }
     }
+
+
+    //https://stackoverflow.com/questions/48790650/how-to-swap-boolean-value-in-multi-threaded-environment
+    public static class ThreadSafeBoolFlag {
+        private boolean flag = false;
+
+        public synchronized boolean get() {
+            return flag;
+        }
+
+        public synchronized void set(boolean newValue) {
+            flag = newValue;
+        }
+
+        public synchronized void swap() {
+            flag = !flag;
+        }
+
+    }
 }
+

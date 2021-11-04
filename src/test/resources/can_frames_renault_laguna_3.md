@@ -71,23 +71,89 @@
 
 # Radiosat audio/radio tuner - CAN ID 5B8 and 3DF
 
+## Algorithm to show that Radiosat is enabled and life, implemented in sketch_mcp2515_carminat_stub.ino
+
 3DF 8 28 8 81 81 81 81 81 81 - ENABLE sign 4 times right after power on
 
 5B8 8 31 81 81 81 81 81 81 81 - READY sign 1 times 500 ms after enable sign
 
-5B8 8 10 81 81 81 81 81 81 81 - WOKE UP life probe each 500 ms till switch off
+5B8 8 10 81 81 81 81 81 81 81 - LIFE PROBE each 500 ms till switch off
+
+
+## POSSIBLE algorithm to sleep multimedia system ??? TODO chek it
 
 3DF 8 28 F 81 81 81 81 81 81 - WAKEUP sign after button on radiosat??? TODO chek it
 
 3DF 8 28 0 81 81 81 81 81 81 - SLEEP sign 1 times each 100 ms after sleep sign radiosat??? TODO chek it
 
-5B8 8 30 81 81 81 81 81 81 81 - SLEEP life probe each 500 ms till WAKEUP or SWITCH OFF on radiosat??? TODO chek it
+5B8 8 30 81 81 81 81 81 81 81 - SLEEP PROBE each 500 ms till WAKEUP or SWITCH OFF on radiosat??? TODO chek it
 
 
-# UNKNOWN devices
-568 8 0 0 69 0 46 2F BB BB - very often, life probe??? TODO
+# UNKNOWN devices and can-frames
+
+### can id 121  - very rare signs
+
+121 8 10 27 25 41 13 1 20 80
+
+121 8 10 E 20 0 0 0 0 0 0
+
+121 8 10 E 20 0 C 42 0 0
+
+### can id 1C1
 
 1C1 8 3 60 0 0 FF FF FF FF - very rare TODO
 
 1C1 8 2 62 F FF FF FF FF FF - very rare TODO
+
+### can id 3CF
+
+3CF 8 22 0 FF FF FF FF FF FF - very rare TODO
+
+### can id 521
+
+521 8 30 1 0 FF FF FF FF FF - ??? TODO
+
+521 8 74 FF FF FF FF FF FF FF - ??? TODO
+
+### can id 548
+
+548 8 0 0 3 0 0 0 BB BB - very often, ??? TODO
+
+### can id 558
+
+558 8 D1 FA 28 2 CF 0 BB BB - ??? TODO
+
+### can id 568
+
+568 8 0 0 69 0 46 2F BB BB - approx each 100 ms, very often, life probe??? TODO
+
+### can id 578
+
+578 8 18 9F AC 10 0 BB BB BB - ??? TODO
+
+### can id 588
+
+588 8 0 BB F 0 0 0 BB BB - ??? TODO
+
+### can id 57F
+
+57F 8 0 FF FF FF FF FF FF FF - each 500 ms right after power on, but what the device??? LIFE PROBE ?? TODO
+
+### can id 5A8
+
+5A8 8 7 FF FF FF FF 4 0 BB - ??? TODO, unusual mock bytes of two types in one frame
+
+### can id 5D8
+
+5D8 5 0 4 7C 3 FF - ??? TODO, unusual length of frame
+
+5D8 5 0 7 FF 3 FF - ??? TODO, unusual length of frame
+
+### can id 5E7
+
+5E7 8 0 0 0 0 BB BB BB BB - ??? TODO
+
+### can id 63F
+
+63F 8 4 5 0 1 2 0 F2 F2 - each 500 ms right after power on, but what the device??? LIFE PROBE? TODO
 

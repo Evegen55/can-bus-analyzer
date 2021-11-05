@@ -1,8 +1,12 @@
 81, F2, FF, BB - mock bytes in can frame
 
-# Navi pad - CAN ID 63E, 63D and ? (life probe) TODO
+# Navi pad - CAN ID 63E, 63D and 63F
 
 ![**navi_pad**](https://raw.githubusercontent.com/Evegen55/can-bus-analyzer/main/src/test/resources/navi_pad.png)
+
+### life probe, whole device - CAN ID 63F
+
+63F 8 4 5 0 1 2 0 F2 F2 - each 500 ms right after power on, LIFE PROBE
 
 ## joystick - CAN ID 63E
 63E 8 0 5 F2 F2 F2 F2 F2 F2 - turn left 1 step
@@ -88,6 +92,28 @@
 
 5B8 8 30 81 81 81 81 81 81 81 - SLEEP PROBE each 500 ms till WAKEUP or SWITCH OFF on radiosat??? TODO chek it
 
+## Temperature sensor - CAN ID 558
+
+558 8 D1 FA 28 2 CF 0 BB BB - ??? TODO, 28 HEX = 40 decimal, FA means negative
+
+558 8 D1 AF 29 2 CF 0 BB BB - 1 degree C positive (+1&deg;C), 29 HEX = 41 decimal (PROBABLE, check it)
+
+558 8 D1 AF 2A 2 CF 0 BB BB - 2 degrees C positive (+2&deg;C), 2A HEX = 42 decimal (PROBABLE, check it)
+
+558 8 D1 AF 2B 2 CF 0 BB BB - 3 degrees C positive (+3&deg;C), 2B HEX = 43 decimal
+
+558 8 D1 AF 2C 2 CF 0 BB BB - 4 degrees C positive (+4&deg;C), 2C HEX = 44 decimal
+
+558 8 D1 AF 2D 2 CF 0 BB BB - 5 degrees C positive (+5&deg;C), 2D HEX = 45 decimal
+
+558 8 D1 AF 2E 2 CF 0 BB BB - 6 degrees C positive (+6&deg;C), 2E HEX = 46 decimal
+
+558 8 D1 AF 2F 2 CF 0 BB BB - 7 degrees C positive (+7&deg;C), 2F HEX = 47 decimal (PROBABLE, check it)
+
+558 8 D1 AF 30 2 CF 0 BB BB - 8 degrees C positive (+8&deg;C), 30 HEX = 48 decimal (PROBABLE, check it)
+
+558 8 D1 AF 31 2 CF 0 BB BB - 9 degrees C positive (+9&deg;C), 31 HEX = 49 decimal (PROBABLE, check it)
+
 
 # UNKNOWN devices and can-frames
 
@@ -119,10 +145,6 @@
 
 548 8 0 0 3 0 0 0 BB BB - very often, ??? TODO
 
-### can id 558
-
-558 8 D1 FA 28 2 CF 0 BB BB - ??? TODO
-
 ### can id 568
 
 568 8 0 0 69 0 46 2F BB BB - approx each 100 ms, very often, life probe??? TODO
@@ -152,8 +174,3 @@
 ### can id 5E7
 
 5E7 8 0 0 0 0 BB BB BB BB - ??? TODO
-
-### can id 63F
-
-63F 8 4 5 0 1 2 0 F2 F2 - each 500 ms right after power on, but what the device??? LIFE PROBE? TODO
-

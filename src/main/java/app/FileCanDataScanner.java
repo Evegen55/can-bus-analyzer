@@ -7,6 +7,7 @@ import javafx.scene.control.TableView;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -47,6 +48,8 @@ public class FileCanDataScanner {
 
                                 return new DataHolder(strings[0], lengthOfCanDataByCAN, canData, 1);
                             } catch (Exception e) {
+                                e.printStackTrace();
+                                System.out.println(Arrays.toString(strings));
                                 throw new RuntimeException();
                             }
                         }
@@ -54,9 +57,11 @@ public class FileCanDataScanner {
                         (dataHolder1, dataHolder2) -> {
                             final String[] canData1 = dataHolder1.getCanData();
                             final String[] canData2 = dataHolder2.getCanData();
-                            for (int i = 0; i < canData2.length; i++) {
-                                if (!canData1[i].equals(canData2[i])) {
-                                    canData1[i] = "*";
+                            if (canData1.length == canData2.length) {
+                                for (int i = 0; i < canData2.length; i++) {
+                                    if (!canData1[i].equals(canData2[i])) {
+                                        canData1[i] = "*";
+                                    }
                                 }
                             }
                             dataHolder1.addCounter();

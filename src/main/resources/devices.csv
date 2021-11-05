@@ -2,18 +2,18 @@ can_id,device_name,can_area
 5B8,Radiosat life probe,media
 3DF,Radiosat enable sign,media
 5E7,u,media
-5D8,u (after enable navi and tomtom),media
+5D8,u (after engine start and enable tomtom),media
 5A8,u,media
 548,u,media
-558,u,media
+558,temperature sensor,media
 568,u,media
-57F,u (after enable navi and tomtom),media
+57F,u (after engine start and enable tomtom),media
 578,u,media
 58F,audio control below steering wheel,media
 588,u,media
-63E,Navi pad, joystick,media
-63D,Navi pad, 8 buttons around joystick,media
-63F,u (after enable navi and tomtom),media
+63E,Navi pad joystick,media
+63D,Navi pad 8 buttons around joystick,media
+63F,Navi pad life probe (after engine start and enable tomtom),media
 352,u,obd2
 391,u,obd2
 671,u,obd2

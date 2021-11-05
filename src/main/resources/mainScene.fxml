@@ -9,17 +9,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="878.0" prefWidth="1273.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MainController">
+<AnchorPane prefHeight="1000.0" prefWidth="1800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MainController">
     <children>
-        <TableView fx:id="canBusDataTableView" layoutX="15" layoutY="70.0" prefHeight="803.0" prefWidth="1074.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="70.0">
+        <TableView fx:id="canBusDataTableView" layoutX="15" layoutY="70.0" prefHeight="803.0" prefWidth="1117.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="70.0">
             <columns>
                 <TableColumn fx:id="canIdTableColumn" prefWidth="60.0" text="ID" />
+                <TableColumn fx:id="deviceNameTableColumn" prefWidth="285.0" text="device name" />
                 <TableColumn fx:id="lengthTableColumn" prefWidth="60" text="length" />
                 <TableColumn fx:id="canDataTableColumn" prefWidth="260" text="canData" />
                 <TableColumn fx:id="frequencyCounterTableColumn" prefWidth="85.0" text="freq count" />
                 <TableColumn fx:id="uniqueCanMessagesTableColumn" prefWidth="260" text="unique can messages" />
-                <TableColumn fx:id="deviceNameTableColumn" prefWidth="285.0" text="device name" />
-                <TableColumn fx:id="deviceCanAreaTableColumn" prefWidth="60.0" text="can area" />
+                <TableColumn fx:id="deviceCanAreaTableColumn" prefWidth="75.0" text="can area" />
             </columns>
         </TableView>
         <HBox id="menusAndButtons" layoutX="5.0" layoutY="7.0" prefHeight="55.0" prefWidth="649.0" spacing="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="619.0" AnchorPane.topAnchor="7.0">

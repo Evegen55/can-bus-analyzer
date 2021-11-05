@@ -141,6 +141,8 @@ public class ComPortCanScanner {
 
     public void startStopScanCANBusViaComPortButtonClicked() {
         if (isComPortScanned.get()) {
+            //close port
+            //stop job
             isComPortScanned.swap();
             if (isComPortOpened.get()) {
                 isComPortOpened.set(!comPort.closePort());
@@ -154,6 +156,8 @@ public class ComPortCanScanner {
             }
             startStopScanCANBusViaComPortButton.setText("Start scan CAN bus");
         } else {
+            //open port
+            //start scan
             isComPortScanned.swap();
             canBusDataTableView.getItems().clear();
             while ((submitReaderFromComPort == null || submitReaderFromComPort.isDone()) &&

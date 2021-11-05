@@ -94,7 +94,7 @@
 
 ## Temperature sensor - CAN ID 558
 
-558 8 D1 FA 28 2 CF 0 BB BB - ??? TODO, 28 HEX = 40 decimal, FA means negative
+558 8 D1 FA 28 2 CF 0 BB BB - ??? TODO, 28 HEX = 40 decimal, FA means negative (PROBABLE, check it)
 
 558 8 D1 AF 29 2 CF 0 BB BB - 1 degree C positive (+1&deg;C), 29 HEX = 41 decimal (PROBABLE, check it)
 
@@ -113,6 +113,8 @@
 558 8 D1 AF 30 2 CF 0 BB BB - 8 degrees C positive (+8&deg;C), 30 HEX = 48 decimal (PROBABLE, check it)
 
 558 8 D1 AF 31 2 CF 0 BB BB - 9 degrees C positive (+9&deg;C), 31 HEX = 49 decimal (PROBABLE, check it)
+
+558 8 FC FF FF 0 CF 0 BB BB - unknown, appears if navipad disconnected from bus, FF is mock data, meaning probable is health-chek
 
 
 # UNKNOWN devices and can-frames
@@ -145,6 +147,8 @@
 
 548 8 0 0 3 0 0 0 BB BB - very often, ??? TODO
 
+548 8 0 0 1 0 0 0 BB BB
+
 ### can id 568
 
 568 8 0 0 69 0 46 2F BB BB - approx each 100 ms, very often, life probe??? TODO
@@ -153,9 +157,25 @@
 
 578 8 18 9F AC 10 0 BB BB BB - ??? TODO
 
+578 8 19 0 4F D0 0 BB BB BB
+
+578 8 19 0 4F D0 4 BB BB BB
+
+578 8 19 0 4F D0 5 BB BB BB
+
 ### can id 588
 
 588 8 0 BB F 0 0 0 BB BB - ??? TODO
+
+588 8 1 4D 1B 3 0 0 BB BB - ??? TODO
+
+588 8 1 4B 1B 0 0 0 BB BB - ??? TODO
+
+588 8 1 44 1B 0 0 0 BB BB - ??? TODO
+
+588 8 1 45 1B 0 0 0 BB BB - ??? TODO
+
+TODO - something appears if navipad disconnected from bus
 
 ### can id 57F
 
@@ -165,12 +185,34 @@
 
 5A8 8 7 FF FF FF FF 4 0 BB - ??? TODO, unusual mock bytes of two types in one frame
 
-### can id 5D8
+5A8 8 5 7F DF 7F F8 5 0 BB - ??? TODO
 
-5D8 5 0 4 7C 3 FF - ??? TODO, unusual length of frame
+5A8 8 5 7F DD 7F F8 5 0 BB - ??? TODO
 
-5D8 5 0 7 FF 3 FF - ??? TODO, unusual length of frame
+### can id 5D8, unusual length of frame of 5, appears only when TomTom enabled
+
+5D8 5 0 4 7C 3 FF - ??? TODO
+
+5D8 5 0 7 FF 3 FF - ??? TODO
+
+5D8 5 0 4 94 3 FF - ??? TODO
+
+5D8 5 0 4 91 3 FF - ??? TODO
+
+5D8 5 0 4 87 3 FF - ??? TODO
+
+5D8 5 0 4 A5 3 FF - ??? TODO
+
+5D8 5 0 4 A4 3 FF - ??? TODO
 
 ### can id 5E7
 
 5E7 8 0 0 0 0 BB BB BB BB - ??? TODO
+
+
+# Candidates for unknown devices
+
+## Light sensor - changes UI automatically 
+## Speedometer - warns about speed limit ?
+## Rain sensor ?
+## габаритные фары и ближний свет - что бы включить подсветку у всех приборов

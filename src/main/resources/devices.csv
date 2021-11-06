@@ -5,7 +5,7 @@ can_id,device_name,can_area
 5D8,u (after engine start and enable tomtom),media
 5A8,u,media
 548,u,media
-558,temperature sensor,media
+558,temperature and lights,media
 568,u,media
 57F,u (after engine start and enable tomtom),media
 578,u,media

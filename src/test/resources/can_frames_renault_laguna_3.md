@@ -1,4 +1,10 @@
-81, F2, FF, BB - mock bytes in can frame
+### CAN frame structure
+
+[canid] [number of frames] [0] [1] [2] [3] [4] [5] [6] [7]
+
+111        8               D1  FA  28  2   CF  0   BB  BB
+
+mock bytes in can frame 81, F2, FF, BB
 
 # Navi pad - CAN ID 63E, 63D and 63F
 
@@ -92,34 +98,56 @@
 
 5B8 8 30 81 81 81 81 81 81 81 - SLEEP PROBE each 500 ms till WAKEUP or SWITCH OFF on radiosat??? TODO chek it
 
-## Temperature sensor - CAN ID 558
+## Temperature and lights - CAN ID 558
 
-558 8 D1 FA 28 2 CF 0 BB BB - ??? TODO, 28 HEX = 40 decimal, FA means negative (PROBABLE, check it)
+558 8 D1 AF 29 2 CF 0 BB BB - typical frame
 
-558 8 D1 AF 29 2 CF 0 BB BB - 1 degree C positive (+1&deg;C), 29 HEX = 41 decimal (PROBABLE, check it)
+### byte 0: lights (and, possible, engine state) - to switch on/off button illumination
 
-558 8 D1 AF 2A 2 CF 0 BB BB - 2 degrees C positive (+2&deg;C), 2A HEX = 42 decimal (PROBABLE, check it)
+D1 - lights off
 
-558 8 D1 AF 2B 2 CF 0 BB BB - 3 degrees C positive (+3&deg;C), 2B HEX = 43 decimal
+D5 - габариты включены
 
-558 8 D1 AF 2C 2 CF 0 BB BB - 4 degrees C positive (+4&deg;C), 2C HEX = 44 decimal
+С1 - включен ближний свет
 
-558 8 D1 AF 2D 2 CF 0 BB BB - 5 degrees C positive (+5&deg;C), 2D HEX = 45 decimal
+С5 - свет в авторежиме
 
-558 8 D1 AF 2E 2 CF 0 BB BB - 6 degrees C positive (+6&deg;C), 2E HEX = 46 decimal
+С0 - 
 
-558 8 D1 AF 2F 2 CF 0 BB BB - 7 degrees C positive (+7&deg;C), 2F HEX = 47 decimal (PROBABLE, check it)
+### bytes 1, 2: temperature
 
-558 8 D1 AF 30 2 CF 0 BB BB - 8 degrees C positive (+8&deg;C), 30 HEX = 48 decimal (PROBABLE, check it)
+FA  28 - 0 degree C negative (-0&deg;C), 28 HEX = 40 decimal (PROBABLE, check it)
 
-558 8 D1 AF 31 2 CF 0 BB BB - 9 degrees C positive (+9&deg;C), 31 HEX = 49 decimal (PROBABLE, check it)
+AF 28 - 0 degree C positive (+0&deg;C), 28 HEX = 40 decimal
+
+AF 29 - 1 degree C positive (+1&deg;C), 29 HEX = 41 decimal
+
+AF 2A - 2 degrees C positive (+2&deg;C), 2A HEX = 42 decimal
+
+AF 2B - 3 degrees C positive (+3&deg;C), 2B HEX = 43 decimal
+
+AF 2C - 4 degrees C positive (+4&deg;C), 2C HEX = 44 decimal
+
+AF 2D - 5 degrees C positive (+5&deg;C), 2D HEX = 45 decimal
+
+AF 2E - 6 degrees C positive (+6&deg;C), 2E HEX = 46 decimal
+
+AF 2F - 7 degrees C positive (+7&deg;C), 2F HEX = 47 decimal
+
+AF 30 - 8 degrees C positive (+8&deg;C), 30 HEX = 48 decimal
+
+AF 31 - 9 degrees C positive (+9&deg;C), 31 HEX = 49 decimal
+
+AF 32 - 10 degrees C positive (+10&deg;C), 31 HEX = 49 decimal
+
+AF 3A - 12 degrees C positive (+12&deg;C), 3A HEX = 58 decimal
 
 558 8 FC FF FF 0 CF 0 BB BB - unknown, appears if navipad disconnected from bus, FF is mock data, meaning probable is health-chek
 
 
 # UNKNOWN devices and can-frames
 
-### can id 121  - very rare signs
+### can id 121  - very rare signs, only if Radiosat connected
 
 121 8 10 27 25 41 13 1 20 80
 
@@ -127,7 +155,7 @@
 
 121 8 10 E 20 0 C 42 0 0
 
-### can id 1C1
+### can id 1C1  - very rare signs, only if Radiosat connected
 
 1C1 8 3 60 0 0 FF FF FF FF - very rare TODO
 
@@ -215,4 +243,3 @@ TODO - something appears if navipad disconnected from bus
 ## Light sensor - changes UI automatically 
 ## Speedometer - warns about speed limit ?
 ## Rain sensor ?
-## габаритные фары и ближний свет - что бы включить подсветку у всех приборов

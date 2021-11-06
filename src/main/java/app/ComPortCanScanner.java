@@ -143,13 +143,14 @@ public class ComPortCanScanner {
         if (isComPortScanned.get()) {
             //close port
             //stop job
-            isComPortScanned.swap();
+            isComPortScanned.set(false);
             if (isComPortOpened.get()) {
                 isComPortOpened.set(!comPort.closePort());
             }
             while (!submitReaderFromComPort.isCancelled() &&
                    !submitReaderCanMessagesFromBuffer.isCancelled() &&
-                   !submitUpdateUiFromComPort.isCancelled()) {
+                   !submitUpdateUiFromComPort.isCancelled()
+            ) {
                 submitReaderFromComPort.cancel(true);
                 submitReaderCanMessagesFromBuffer.cancel(true);
                 submitUpdateUiFromComPort.cancel(true);
@@ -158,11 +159,12 @@ public class ComPortCanScanner {
         } else {
             //open port
             //start scan
-            isComPortScanned.swap();
+            isComPortScanned.set(true);
             canBusDataTableView.getItems().clear();
             while ((submitReaderFromComPort == null || submitReaderFromComPort.isDone()) &&
                    (submitReaderCanMessagesFromBuffer == null || submitReaderCanMessagesFromBuffer.isDone()) &&
-                   (submitUpdateUiFromComPort == null || submitUpdateUiFromComPort.isDone())) {
+                   (submitUpdateUiFromComPort == null || submitUpdateUiFromComPort.isDone())
+            ) {
                 submitReaderFromComPort = executorServiceForComPort.submit(runnableReaderFromComPort);
                 submitReaderCanMessagesFromBuffer = executorServiceForComPort.submit(readerCanMessagesFromBuffer);
                 submitUpdateUiFromComPort = executorServiceForComPort.submit(updateUiFromComPort);

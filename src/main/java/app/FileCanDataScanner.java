@@ -4,6 +4,7 @@ import data.DataHolder;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableView;
 
+import javax.naming.InvalidNameException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -28,9 +29,24 @@ public class FileCanDataScanner {
     public void openFileAndFillTable(File file) throws IOException {
         //19:08:46.657 -> 568 8 0 0 69 0 46 2F BB BB
         final Map<String, DataHolder> stringDataHolderMap = Files.lines(file.toPath())
-                .map(line -> line
-                        .split(" -> ")[1] //removing time label put by arduino logger
-                        .split(" "))
+                .skip(3) //lines with log descriptions
+                .map(line -> {
+                         String fileName = file.getName();
+                         String fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+                         String lineCanDataOnly;
+                         if (fileExtension.equals("lgt")) {
+                             lineCanDataOnly = line.split(" -> ")[1];//removing time label put by arduino logger
+                         } else if (fileExtension.equals("lnt")) {
+                             lineCanDataOnly = line;
+                         } else {
+                             throw new RuntimeException("File must be formated as " +
+                                                        ".lgt - logged data with timings " +
+                                                        "or " +
+                                                        ".lnt - logged data without timings");
+                         }
+                         return lineCanDataOnly.split(" ");
+                     }
+                )
                 .collect(Collectors.toMap(
                         strings -> strings[0], //ID -> 568
                         strings -> {

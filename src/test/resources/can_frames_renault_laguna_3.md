@@ -104,13 +104,13 @@ mock bytes in can frame 81, F2, FF, BB
 
 ### byte 0: lights (and, possible, engine state) - to switch on/off button illumination
 
-D1 - lights off
+D1 - lights off ??
 
-D5 - габариты включены
+D5 - габариты включены ??
 
-С1 - включен ближний свет
+С1 - включен ближний свет ??
 
-С5 - свет в авторежиме
+С5 - свет в авторежиме ??
 
 С0 - 
 

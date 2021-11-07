@@ -79,7 +79,7 @@ public class ComPortCanScanner {
                 char readFromBuffer = (char) value.intValue();
                 if (readFromBuffer != '\r') {
                     if (readFromBuffer == '\n') {
-                        canMessagesBuffer.offer(sb.toString()); //TODO print to log file line by line
+                        canMessagesBuffer.offer(sb.toString());
                         sb = new StringBuilder();
                     } else {
                         sb.append(readFromBuffer);
@@ -90,11 +90,12 @@ public class ComPortCanScanner {
     };
 
     final Runnable updateUiFromComPort = () -> {
-        Map<String, DataHolder> stringDataHolderMap = new HashMap<>();
+        final Map<String, DataHolder> stringDataHolderMap = new HashMap<>();
         while (isComPortScanned.get()) {
             DataHolder dataHolder;
             if (!canMessagesBuffer.isEmpty()) {
-                String canMessage = canMessagesBuffer.poll();
+                final String canMessage = canMessagesBuffer.poll();
+                System.out.println(canMessage);
                 String[] split = canMessage.split(" ");
                 String deviceId = split[0];
                 if (deviceId.length() >= 2) {
@@ -108,19 +109,27 @@ public class ComPortCanScanner {
                             dataHolder = new DataHolder(deviceId, lengthOfCanDataByCAN, canData, 1);
 
                             if (!stringDataHolderMap.containsKey(deviceId)) {
-                                stringDataHolderMap.put(deviceId, dataHolder);
+                                stringDataHolderMap.put(deviceId, dataHolder);//stores in map
+//                                canBusDataTableView.getItems().add(dataHolder);//adds to a GUI table
                             } else {
-                                DataHolder dataHolderPrev = stringDataHolderMap.get(deviceId);
-                                String[] canDataPrev = dataHolderPrev.getCanData();
+                                final DataHolder dataHolderFromMap = stringDataHolderMap.get(deviceId);
+                                final String[] canDataPrev = dataHolderFromMap.getCanData();
                                 for (int i = 0; i < canData.length; i++) {
                                     if (!canDataPrev[i].equals(canData[i])) {
                                         canDataPrev[i] = "*";
                                     }
                                 }
-                                dataHolderPrev.addCounter();
-                                dataHolderPrev.getUniqueCanMessages().add(dataHolder.getStringCanData());
-                            }
+                                dataHolderFromMap.addCounter();
+                                dataHolderFromMap.getUniqueCanMessages().add(dataHolder.getStringCanData());
 
+                                // Trick to force updating GUI table
+                                // adding element triggers synchronisation between GUI and observable list
+                                // but items() is a List, not Set, so it needs to be removed
+                                // adding and removing by index are fast (O by 1) operations
+                                // this trick is more suitable than clean adn refill table each time
+//                                canBusDataTableView.getItems().add(dataHolder);
+//                                canBusDataTableView.getItems().remove(canBusDataTableView.getItems().size()-1);
+                            }
                             ObservableList<DataHolder> dataHolderObservableList = FXCollections.observableArrayList(stringDataHolderMap.values());
                             canBusDataTableView.getItems().setAll(dataHolderObservableList);
                         }

@@ -5,7 +5,7 @@ can_id,device_name,can_area
 5D8,u (after engine start and enable tomtom),media
 5A8,u,media
 548,u,media
-558,temperature and lights,media
+558,temperature and lights on/off,media
 568,u,media
 57F,u (after engine start and enable tomtom),media
 578,u,media
@@ -17,7 +17,7 @@ can_id,device_name,can_area
 352,u,obd2
 391,u,obd2
 671,u,obd2
-121,u,media
+121,Radiosat and TomTom text data,media
 12E,u,obd2
 186,u,obd2
 18A,u,obd2
@@ -34,7 +34,7 @@ can_id,device_name,can_area
 4F8,u,obd2
 500,u,obd2
 511,u,obd2
-521,u,media
+521,Radiosat and TomTom text data,media
 534,u,obd2
 552,u,obd2
 5D7,u,obd2

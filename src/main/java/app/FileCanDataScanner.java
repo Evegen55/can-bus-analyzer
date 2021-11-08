@@ -4,7 +4,6 @@ import data.DataHolder;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableView;
 
-import javax.naming.InvalidNameException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;

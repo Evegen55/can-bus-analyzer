@@ -65,11 +65,11 @@ mock bytes in can frame 81, F2, FF, BB
 
 58F 8 89 0 3 BB BB BB BB BB - volume UP (+)
 
-58F 8 89 0 43 BB BB BB BB BB - ??? TODO
+58F 8 89 0 43 BB BB BB BB BB - volume UP (+) LONG TIME
 
 58F 8 89 0 4 BB BB BB BB BB - volume DOWN (-)
 
-58F 8 89 0 44 BB BB BB BB BB - volume DOWN (-) - why - I don't know
+58F 8 89 0 44 BB BB BB BB BB - volume DOWN (-) LONG TIME
 
 58F 8 89 0 5 BB BB BB BB BB - mute/unmute, phone call on/off
 
@@ -104,15 +104,15 @@ mock bytes in can frame 81, F2, FF, BB
 
 ### byte 0: lights (and, possible, engine state) - to switch on/off button illumination
 
-D1 - lights off ??
+D1 - lights off
 
-D5 - габариты включены ??
+D5 - lights on
 
-С1 - включен ближний свет ??
+С1 - ??
 
-С5 - свет в авторежиме ??
+С5 - ??
 
-С0 - 
+С0 - ??
 
 ### bytes 1, 2: temperature
 
@@ -144,16 +144,38 @@ AF 3A - 12 degrees C positive (+12&deg;C), 3A HEX = 58 decimal
 
 558 8 FC FF FF 0 CF 0 BB BB - unknown, appears if navipad disconnected from bus, FF is mock data, meaning probable is health-chek
 
+# Radiosat and TomTom text data (track name, radio frequency, radiosat settings etc.) - CAN ID 121, 521
+
+## can id 121
+
+121 8 10 27 25 41 13 1 20 80 - ??? TODO
+
+121 8 10 E 20 0 0 0 0 0 0 - ??? TODO
+
+121 8 10 E 20 0 C 42 0 0 - ??? TODO
+
+121 8 21 AF 2 0 0 1 21 0 - ??? TODO
+
+121 8 21 AB 2 0 0 1 21 0 - ??? TODO
+
+121 8 21 AB 1 0 0 1 21 0 - ??? TODO
+
+121 8 10 E 20 0 4 42 0 0 - ??? TODO
+
+121 8 22 E1 81 81 81 81 81 81 - ??? TODO
+
+121 8 10 E 20 0 4 42 0 0 - ??? TODO
+
+121 8 3 31 0 0 81 81 81 81 - ??? TODO
+
+## can id 521
+
+521 8 30 1 0 FF FF FF FF FF - ??? TODO, start or stop block of data as can frames, or accept from tomtom
+
+521 8 74 FF FF FF FF FF FF FF - ??? TODO, start or stop block of data as can frames, or accept from tomtom
+
 
 # UNKNOWN devices and can-frames
-
-### can id 121  - very rare signs, only if Radiosat connected
-
-121 8 10 27 25 41 13 1 20 80
-
-121 8 10 E 20 0 0 0 0 0 0
-
-121 8 10 E 20 0 C 42 0 0
 
 ### can id 1C1  - very rare signs, only if Radiosat connected
 
@@ -164,12 +186,6 @@ AF 3A - 12 degrees C positive (+12&deg;C), 3A HEX = 58 decimal
 ### can id 3CF
 
 3CF 8 22 0 FF FF FF FF FF FF - very rare TODO
-
-### can id 521
-
-521 8 30 1 0 FF FF FF FF FF - ??? TODO
-
-521 8 74 FF FF FF FF FF FF FF - ??? TODO
 
 ### can id 548
 

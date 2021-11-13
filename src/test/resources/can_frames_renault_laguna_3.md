@@ -56,6 +56,10 @@ mock bytes in can frame 81, F2, FF, BB
 
 58F 8 80 0 BB BB BB BB BB BB - ??? TODO
 
+58F 8 80 1 BB BB BB BB BB BB - life probe??? TODO
+
+58F 8 80 5 BB BB BB BB BB BB - life probe??? TODO
+
 ## Buttons (9 pieces)
 58F 8 89 0 0 BB BB BB BB BB - ролик нажат
 
@@ -97,6 +101,12 @@ mock bytes in can frame 81, F2, FF, BB
 3DF 8 28 0 81 81 81 81 81 81 - SLEEP sign 1 times each 100 ms after sleep sign radiosat??? TODO chek it
 
 5B8 8 30 81 81 81 81 81 81 81 - SLEEP PROBE each 500 ms till WAKEUP or SWITCH OFF on radiosat??? TODO chek it
+
+5B8 8 0 81 81 81 81 81 81 81 - ??? TODO
+
+5B8 8 11 81 81 81 81 81 81 81 - ??? TODO
+
+5B8 8 1 81 81 81 81 81 81 81 - ??? TODO
 
 ## Temperature and lights - CAN ID 558
 
@@ -160,11 +170,10 @@ AF 3A - 12 degrees C positive (+12&deg;C), 3A HEX = 58 decimal
 
 121 8 21 AB 1 0 0 1 21 0 - ??? TODO
 
-121 8 10 E 20 0 4 42 0 0 - ??? TODO
+121 8 10 E 20 0 4 42 0 0 - frame appears only when source changed from radio to cd, and looks like lifeprobe
 
 121 8 22 E1 81 81 81 81 81 81 - ??? TODO
 
-121 8 10 E 20 0 4 42 0 0 - ??? TODO
 
 121 8 3 31 0 0 81 81 81 81 - ??? TODO
 

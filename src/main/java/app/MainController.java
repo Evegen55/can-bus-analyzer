@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -62,6 +63,32 @@ public class MainController {
     @FXML
     public TableColumn<DataHolder, ComboBox<String>> uniqueCanMessagesTableColumn;
 
+    @FXML
+    public Button canDataSendButton;
+    @FXML
+    public TextArea canIdTextArea;
+    @FXML
+    public TextArea byteZeroTextArea;
+    @FXML
+    public TextArea byteOneTextArea;
+    @FXML
+    public TextArea byteTwoTextArea;
+    @FXML
+    public TextArea byteThreeTextArea;
+    @FXML
+    public TextArea byteFourTextArea;
+    @FXML
+    public TextArea byteFiveTextArea;
+    @FXML
+    public TextArea byteSixTextArea;
+    @FXML
+    public TextArea byteSevenTextArea;
+
+    private TextArea[] textAreasHexBytes;
+
+    private int lengthOfHexData = 0;
+
+
     //== methods for initialisation main controller ====================================================================
     public void initialize() {
         existedComPortsComboBox.getSelectionModel().selectedItemProperty()
@@ -86,7 +113,16 @@ public class MainController {
 //            langsComboBox.setOnAction(event -> lbl.setText(langsComboBox.getValue()));
             return new ReadOnlyObjectWrapper<>(langsComboBox);
         });
-        // TODO: 20.10.2021 add send button
+        textAreasHexBytes = new TextArea[]{
+                byteZeroTextArea,
+                byteOneTextArea,
+                byteTwoTextArea,
+                byteThreeTextArea,
+                byteFourTextArea,
+                byteFiveTextArea,
+                byteSixTextArea,
+                byteSevenTextArea
+        };
     }
 
     public void setMainStage(final Stage primaryStage) {
@@ -136,6 +172,26 @@ public class MainController {
                 e.printStackTrace();
             }
         }
+    }
+
+    //TODO
+    public void sendCanDataFromHexFields() {
+        System.out.print(canIdTextArea.getText());
+
+        for (int i = 0; i < textAreasHexBytes.length; i++) {
+            String byteAsText = textAreasHexBytes[i].getText();
+            if (!byteAsText.isEmpty()) {
+                lengthOfHexData += 1;
+            }
+        }
+
+        System.out.print(" " + lengthOfHexData);
+
+        for (int i = 0; i < textAreasHexBytes.length; i++) {
+            String byteAsText = textAreasHexBytes[i].getText();
+            System.out.print(" " + byteAsText);
+        }
+
     }
 
 

@@ -3,11 +3,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="1000.0" prefWidth="1800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MainController">
     <children>
@@ -22,7 +26,7 @@
                 <TableColumn fx:id="deviceCanAreaTableColumn" prefWidth="75.0" text="can area" />
             </columns>
         </TableView>
-        <HBox id="menusAndButtons" layoutX="5.0" layoutY="7.0" prefHeight="55.0" prefWidth="649.0" spacing="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="619.0" AnchorPane.topAnchor="7.0">
+        <HBox id="menusAndButtons" layoutX="5.0" layoutY="7.0" prefHeight="54.0" prefWidth="1415.0" spacing="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="380.0" AnchorPane.topAnchor="7.0">
             <children>
                 <VBox id="buttons" prefHeight="113.0" prefWidth="241.0" spacing="5.0">
                     <children>
@@ -35,6 +39,251 @@
                 </VBox>
                   <Button fx:id="startScanCANDataFileButton" onAction="#startScanCANDataFileButtonClicked" prefHeight="26.0" prefWidth="203.0" text="Scan file with CAN data" />
                   <Button fx:id="startStopScanCANBusViaComPortButton" onAction="#startStopScanCANBusViaComPortButtonClicked" prefHeight="26.0" prefWidth="194.0" text="Start scan CAN bus" />
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <HBox prefHeight="54.0" prefWidth="695.0">
+               <children>
+                  <HBox id="canIdHBox">
+                     <children>
+                        <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" text="0x">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="28.0" />
+                           </HBox.margin>
+                        </Label>
+                        <VBox id="canIdVBox" prefHeight="38.0" prefWidth="54.0">
+                           <children>
+                              <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="64.0" text="CAN ID">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <TextArea id="canIdTextArea" fx:id="canIdTextArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="64.0" promptText="HEX">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox id="byteZeroHBox" prefHeight="54.0" prefWidth="58.0">
+                     <children>
+                        <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" text="0x">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="28.0" />
+                           </HBox.margin>
+                        </Label>
+                        <VBox id="byteZeroVBox" prefHeight="54.0" prefWidth="39.0">
+                           <children>
+                              <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="47.0" text="byte 0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <TextArea id="byteZeroTextArea" fx:id="byteZeroTextArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="47.0" promptText="hex">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox id="byteOneHBox" prefHeight="54.0" prefWidth="58.0">
+                     <children>
+                        <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" text="0x">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="28.0" />
+                           </HBox.margin>
+                        </Label>
+                        <VBox id="byteOneVBox" prefHeight="54.0" prefWidth="39.0">
+                           <children>
+                              <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="47.0" text="byte 1">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <TextArea id="byteOneTextArea" fx:id="byteOneTextArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="47.0" promptText="hex">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox id="byteTwoHBox" prefHeight="54.0" prefWidth="58.0">
+                     <children>
+                        <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" text="0x">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="28.0" />
+                           </HBox.margin>
+                        </Label>
+                        <VBox id="byteTwoVBox" prefHeight="54.0" prefWidth="39.0">
+                           <children>
+                              <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="47.0" text="byte 2">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <TextArea id="byteTwoTextArea" fx:id="byteTwoTextArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="47.0" promptText="hex">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox id="byteThreeHBox" prefHeight="54.0" prefWidth="58.0">
+                     <children>
+                        <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" text="0x">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="28.0" />
+                           </HBox.margin>
+                        </Label>
+                        <VBox id="byteThreeVBox" prefHeight="54.0" prefWidth="39.0">
+                           <children>
+                              <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="47.0" text="byte 3">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <TextArea id="byteThreeTextArea" fx:id="byteThreeTextArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="47.0" promptText="hex">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox id="byteFourHBox" prefHeight="54.0" prefWidth="58.0">
+                     <children>
+                        <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" text="0x">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="28.0" />
+                           </HBox.margin>
+                        </Label>
+                        <VBox id="byteFourVBox" prefHeight="54.0" prefWidth="39.0">
+                           <children>
+                              <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="47.0" text="byte 4">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <TextArea id="byteFourTextArea" fx:id="byteFourTextArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="47.0" promptText="hex">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox id="byteFiveHBox" prefHeight="54.0" prefWidth="58.0">
+                     <children>
+                        <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" text="0x">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="28.0" />
+                           </HBox.margin>
+                        </Label>
+                        <VBox id="byteFiveVBox" prefHeight="54.0" prefWidth="39.0">
+                           <children>
+                              <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="47.0" text="byte 5">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <TextArea id="byteFiveTextArea" fx:id="byteFiveTextArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="47.0" promptText="hex">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox id="byteSixHBox" prefHeight="54.0" prefWidth="58.0">
+                     <children>
+                        <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" text="0x">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="28.0" />
+                           </HBox.margin>
+                        </Label>
+                        <VBox id="byteSixVBox" prefHeight="54.0" prefWidth="39.0">
+                           <children>
+                              <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="47.0" text="byte 6">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <TextArea id="byteSixTextArea" fx:id="byteSixTextArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="47.0" promptText="hex">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox id="byteSevenHBox" prefHeight="54.0" prefWidth="58.0">
+                     <children>
+                        <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" text="0x">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="28.0" />
+                           </HBox.margin>
+                        </Label>
+                        <VBox id="byteSevenVBox" prefHeight="54.0" prefWidth="39.0">
+                           <children>
+                              <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="47.0" text="byte 7">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <TextArea id="byteSevenTextArea" fx:id="byteSevenTextArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="47.0" promptText="hex">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Button id="canDataSendButton" fx:id="canDataSendButton" mnemonicParsing="false" onAction="#sendCanDataFromHexFields" text="Send">
+                     <HBox.margin>
+                        <Insets left="15.0" top="18.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
             </children>
         </HBox>
 

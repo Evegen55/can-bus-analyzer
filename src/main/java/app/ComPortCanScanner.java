@@ -8,7 +8,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedDeque;
@@ -30,13 +32,15 @@ public class ComPortCanScanner {
     public ComPortCanScanner(
             final Button startStopScanCANBusViaComPortButton,
             final ComboBox<String> existedComPortsComboBox,
-            final SerialPort[] commPorts,
             final TableView<DataHolder> canBusDataTableView
     ) {
         this.startStopScanCANBusViaComPortButton = startStopScanCANBusViaComPortButton;
         this.existedComPortsComboBox = existedComPortsComboBox;
-        this.commPorts = commPorts;
         this.canBusDataTableView = canBusDataTableView;
+    }
+
+    public void setCommPorts(final SerialPort[] commPorts) {
+        this.commPorts = commPorts;
     }
 
     ThreadSafeBoolFlag isComPortScanned = new ThreadSafeBoolFlag();
@@ -54,22 +58,63 @@ public class ComPortCanScanner {
                 .getSelectedIndex();
         if (selectedIndexOfComPort >= 0) {
             comPort = commPorts[selectedIndexOfComPort];
-            isComPortOpened.set(comPort.openPort());
-            if (isComPortOpened.get()) {
-                comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 0, 0);
-                try (InputStream in = comPort.getInputStream()) {
-                    while (isComPortScanned.get()) {
-                        int read = in.read();
-                        if (read != -1) {
-                            charBuffer.offer(read);
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
+            if (!comPort.isOpen()) {
+                boolean isComPortOpenedSuccessfully = comPort.openPort();
+                if (isComPortOpenedSuccessfully) {
+                    isComPortOpened.set(true);
+                    comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 0, 0);
+                } else {
+                    LOGGER.log(Level.WARNING, "Comm port couldn't be opened.");
+                    return;
                 }
+            }
+
+            try (InputStream in = comPort.getInputStream()) {
+                while (isComPortScanned.get()) {
+                    int read = in.read();
+                    if (read != -1) {
+                        charBuffer.offer(read);
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     };
+
+    public void writeCanDataToCommPort(final int[] intsToSend) {
+        final int selectedIndexOfComPort = existedComPortsComboBox
+                .getSelectionModel()
+                .getSelectedIndex();
+        if (selectedIndexOfComPort >= 0) {
+            comPort = commPorts[selectedIndexOfComPort];
+            if (!comPort.isOpen()) {
+                boolean isComPortOpenedSuccessfully = comPort.openPort();
+                if (isComPortOpenedSuccessfully) {
+                    isComPortOpened.set(true);
+                    comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 0, 0);
+                } else {
+                    LOGGER.log(Level.WARNING, "Comm port couldn't be opened.");
+                    return;
+                }
+            }
+
+            try (OutputStream comPortOutputStream = comPort.getOutputStream()) {
+                if (isComPortScanned.get()) {
+                    for (final int j : intsToSend) {
+                        try {
+                            comPortOutputStream.write(j);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    comPortOutputStream.write('\n');//EOL
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     final Runnable readerCanMessagesFromBuffer = () -> {
         StringBuilder sb = new StringBuilder();

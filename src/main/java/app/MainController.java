@@ -113,6 +113,11 @@ public class MainController {
 //            langsComboBox.setOnAction(event -> lbl.setText(langsComboBox.getValue()));
             return new ReadOnlyObjectWrapper<>(langsComboBox);
         });
+        comPortCanScanner = new ComPortCanScanner(
+                startStopScanCANBusViaComPortButton,
+                existedComPortsComboBox,
+                canBusDataTableView
+        );
         textAreasHexBytes = new TextArea[]{
                 byteZeroTextArea,
                 byteOneTextArea,
@@ -139,20 +144,13 @@ public class MainController {
 
         existedComPortsComboBox.getItems().clear();
         existedComPortsComboBox.getItems().addAll(FXCollections.observableArrayList(comPortsDescriptions));
+        comPortCanScanner.setCommPorts(commPorts);
     }
 
 
     ComPortCanScanner comPortCanScanner;
 
     public void startStopScanCANBusViaComPortButtonClicked(final ActionEvent actionEvent) {
-        if (comPortCanScanner == null) {
-            comPortCanScanner = new ComPortCanScanner(
-                    startStopScanCANBusViaComPortButton,
-                    existedComPortsComboBox,
-                    commPorts,
-                    canBusDataTableView
-            );
-        }
         comPortCanScanner.startStopScanCANBusViaComPortButtonClicked();
     }
 
@@ -174,24 +172,27 @@ public class MainController {
         }
     }
 
-    //TODO
     public void sendCanDataFromHexFields() {
-        System.out.print(canIdTextArea.getText());
 
         for (int i = 0; i < textAreasHexBytes.length; i++) {
-            String byteAsText = textAreasHexBytes[i].getText();
-            if (!byteAsText.isEmpty()) {
+            String hexNumberAsText = textAreasHexBytes[i].getText();
+            if (!hexNumberAsText.isEmpty()) {
                 lengthOfHexData += 1;
             }
         }
 
-        System.out.print(" " + lengthOfHexData);
+        int[] hexNumbersToSend = new int[lengthOfHexData + 2];
+        hexNumbersToSend[0] = Integer.parseInt(canIdTextArea.getText(), 16);
+        hexNumbersToSend[1] = lengthOfHexData;
 
         for (int i = 0; i < textAreasHexBytes.length; i++) {
-            String byteAsText = textAreasHexBytes[i].getText();
-            System.out.print(" " + byteAsText);
+            String hexNumberAsText = textAreasHexBytes[i].getText();
+            if (!hexNumberAsText.isEmpty()) {
+                hexNumbersToSend[i + 2] = Integer.parseInt(hexNumberAsText, 16);
+            }
         }
 
+        comPortCanScanner.writeCanDataToCommPort(hexNumbersToSend);
     }
 
 

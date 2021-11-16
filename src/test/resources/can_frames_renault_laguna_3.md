@@ -21,6 +21,8 @@ mock bytes in can frame 81, F2, FF, BB
 
 63E 8 1 0 F2 F2 F2 F2 F2 F2 - pressed
 
+63E 8 2 0 F2 F2 F2 F2 F2 F2 - pressed more 2 or 3 sec
+
 ### joystick tilt and push
 63E 8 10 0 F2 F2 F2 F2 F2 F2 - right
 
@@ -33,21 +35,39 @@ mock bytes in can frame 81, F2, FF, BB
 ## buttons around joystick - CAN ID 63D  (9 pieces)
 63D 8 0 F2 F2 F2 F2 F2 F2 F2 - |__ (top left) button
 
+63D 8 80 F2 F2 F2 F2 F2 F2 F2 - |__ (top left) button more 2 or 3 sec
+
 63D 8 1 F2 F2 F2 F2 F2 F2 F2 - Back (top center) button
+
+63D 8 81 F2 F2 F2 F2 F2 F2 F2 - Back (top center) button more 2 or 3 sec
 
 63D 8 2 F2 F2 F2 F2 F2 F2 F2 - __| (top left) button
 
+63D 8 82 F2 F2 F2 F2 F2 F2 F2 - __| (top left) button more 2 or 3 sec
+
 63D 8 3 F2 F2 F2 F2 F2 F2 F2 - INFO route (center right) button
+
+63D 8 83 F2 F2 F2 F2 F2 F2 F2 - INFO route (center right) button more 2 or 3 sec
 
 63D 8 4 F2 F2 F2 F2 F2 F2 F2 - MENU set (bottom right) button
 
+63D 8 84 F2 F2 F2 F2 F2 F2 F2 - MENU set (bottom right) button more 2 or 3 sec
+
 63D 8 5 F2 F2 F2 F2 F2 F2 F2 - LIGHT dark (bottom center right) button
+
+63D 8 85 F2 F2 F2 F2 F2 F2 F2 - LIGHT dark (bottom center right) button more 2 or 3 sec
 
 63D 8 6 F2 F2 F2 F2 F2 F2 F2 - REPEAT mute (bottom center left) button
 
+63D 8 86 F2 F2 F2 F2 F2 F2 F2 - REPEAT mute (bottom center left) button more 2 or 3 sec
+
 63D 8 7 F2 F2 F2 F2 F2 F2 F2 - DEST home (bottom left) button
 
+63D 8 87 F2 F2 F2 F2 F2 F2 F2 - DEST home (bottom left) button more 2 or 3 sec
+
 63D 8 8 F2 F2 F2 F2 F2 F2 F2 - MAP 2D 3D (center left) button
+
+63D 8 88 F2 F2 F2 F2 F2 F2 F2 - MAP 2D 3D (center left) button more 2 or 3 sec
 
 # Audio control below steering wheel - CAN ID 58F
 ![**audio_control_below_steering_wheel**](https://raw.githubusercontent.com/Evegen55/can-bus-analyzer/main/src/test/resources/audio_control_below_steering_wheel.png)
@@ -113,6 +133,8 @@ mock bytes in can frame 81, F2, FF, BB
 558 8 D1 AF 29 2 CF 0 BB BB - typical frame
 
 ### byte 0: lights (and, possible, engine state) - to switch on/off button illumination
+
+D0 - car closed
 
 D1 - lights off
 

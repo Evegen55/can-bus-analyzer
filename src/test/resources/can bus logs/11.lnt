@@ -2,7 +2,7 @@
 ##
 
 578 8 19 2 4C 60 0 BB BB BB
-568 8 0 0 69 0 46 2F BB BB  0 0 3 0 0 0 BB BB
+568 8 0 0 69 0 46 2F BB BB
 568 8 0 0 69 0 46 2F BB BB
 548 8 0 0 3 0 0 0 BB BB
 58F 8 80 0 BB BB BB BB BB BB
@@ -303,51 +303,6 @@
 568 8 0 0 69 0 46 2F BB BB
 548 8 0 0 3 0 0 0 BB BB
 58F 8 80 0 BB BB BB BB BB BB
-Exception in thread "JavaFX Application Thread" java.lang.IndexOutOfBoundsException: [ fromIndex: 0, toIndex: 1, size: 0 ]
-	at javafx.controls/com.sun.javafx.scene.control.ReadOnlyUnbackedObservableList.subList(ReadOnlyUnbackedObservableList.java:171)
-	at javafx.base/javafx.collections.ListChangeListener$Change.getAddedSubList(ListChangeListener.java:243)
-	at javafx.controls/javafx.scene.control.ControlUtils.updateSelectedIndices(ControlUtils.java:168)
-	at javafx.controls/javafx.scene.control.TableView$TableViewArrayListSelectionModel.fireCustomSelectedCellsListChangeEvent(TableView.java:3027)
-	at javafx.controls/javafx.scene.control.TableView$TableViewArrayListSelectionModel.clearAndSelect(TableView.java:2481)
-	at javafx.controls/javafx.scene.control.TableView$TableViewSelectionModel.clearAndSelect(TableView.java:1965)
-	at javafx.controls/com.sun.javafx.scene.control.behavior.TableCellBehaviorBase.simpleSelect(TableCellBehaviorBase.java:213)
-	at javafx.controls/com.sun.javafx.scene.control.behavior.TableCellBehaviorBase.doSelect(TableCellBehaviorBase.java:146)
-	at javafx.controls/com.sun.javafx.scene.control.behavior.CellBehaviorBase.mousePressed(CellBehaviorBase.java:176)
-	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
-	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
-	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
-	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
-	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
-	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
-	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
-	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
-	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3862)
-	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1849)
-	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2590)
-	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:409)
-	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:299)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:391)
-	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:447)
-	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:412)
-	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:446)
-	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:556)
-	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:942)
-	at javafx.graphics/com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
-	at javafx.graphics/com.sun.glass.ui.gtk.GtkApplication.lambda$runLoop$11(GtkApplication.java:277)
-	at java.base/java.lang.Thread.run(Thread.java:831)
 578 8 19 2 4C 60 0 BB BB BB
 568 8 0 0 69 0 46 2F BB BB
 58F 8 80 0 BB BB BB BB BB BB

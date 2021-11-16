@@ -30,21 +30,38 @@ public class FileCanDataScanner {
         final Map<String, DataHolder> stringDataHolderMap = Files.lines(file.toPath())
                 .skip(3) //lines with log descriptions
                 .map(line -> {
-                         String fileName = file.getName();
-                         String fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
-                         String lineCanDataOnly;
-                         if (fileExtension.equals("lgt")) {
-                             lineCanDataOnly = line.split(" -> ")[1];//removing time label put by arduino logger
-                         } else if (fileExtension.equals("lnt")) {
-                             lineCanDataOnly = line;
-                         } else {
-                             throw new RuntimeException("File must be formated as " +
-                                                        ".lgt - logged data with timings " +
-                                                        "or " +
-                                                        ".lnt - logged data without timings");
-                         }
-                         return lineCanDataOnly.split(" ");
-                     }
+                            String fileName = file.getName();
+                            String fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+                            String lineCanDataOnly;
+                            if (fileExtension.equals("lgt")) {
+                                lineCanDataOnly = line.split(" -> ")[1];//removing time label put by arduino logger
+                            } else if (fileExtension.equals("lnt")) {
+                                lineCanDataOnly = line;
+                            } else {
+                                throw new RuntimeException("File must be formated as " +
+                                        ".lgt - logged data with timings " +
+                                        "or " +
+                                        ".lnt - logged data without timings");
+                            }
+
+                            //===============log filtering and printing
+                            if (
+                                    line.startsWith("58F 8 89 1 1")
+                                            ||
+                                            line.startsWith("58F 8 89 0 2")
+                                            ||
+                                            line.startsWith("121")
+                                            ||
+                                            line.startsWith("521 8 30")
+                                            ||
+                                            line.startsWith("521 8 74")
+
+                            ) {
+                                System.out.println(lineCanDataOnly);
+                            }
+                            //==================
+                            return lineCanDataOnly.split(" ");
+                        }
                 )
                 .collect(Collectors.toMap(
                         strings -> strings[0], //ID -> 568

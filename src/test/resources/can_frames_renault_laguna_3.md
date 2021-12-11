@@ -146,33 +146,42 @@ D5 - lights on
 
 С0 - ??
 
-### bytes 1, 2: temperature
+### byte 1: unknown, possible values
 
-FA  28 - 0 degree C negative (-0&deg;C), 28 HEX = 40 decimal (PROBABLE, check it)
+AF
 
-AF 28 - 0 degree C positive (+0&deg;C), 28 HEX = 40 decimal
+FA
 
-AF 29 - 1 degree C positive (+1&deg;C), 29 HEX = 41 decimal
+6F
 
-AF 2A - 2 degrees C positive (+2&deg;C), 2A HEX = 42 decimal
+### byte 2: temperature, way to calculate:
+ - HEX: received value - 28, then converted to DEC if less than 10, or direct transposed as DEC 
 
-AF 2B - 3 degrees C positive (+3&deg;C), 2B HEX = 43 decimal
+19 - -15 degree C negative (-0&deg;C), 19 HEX = 25 decimal
 
-AF 2C - 4 degrees C positive (+4&deg;C), 2C HEX = 44 decimal
+28 - **0** degree C positive (+0&deg;C), 28 HEX - 28 HEX  = **0** HEX, **0** DEC
 
-AF 2D - 5 degrees C positive (+5&deg;C), 2D HEX = 45 decimal
+29 - **1** degree C positive (+1&deg;C), 29 HEX - 28 HEX  = **1** HEX, **1** DEC
 
-AF 2E - 6 degrees C positive (+6&deg;C), 2E HEX = 46 decimal
+2A - **2** degrees C positive (+2&deg;C), 2A HEX - 28 HEX  = **2** HEX, **2** DEC
 
-AF 2F - 7 degrees C positive (+7&deg;C), 2F HEX = 47 decimal
+2B - **3** degrees C positive (+3&deg;C), 2B HEX - 28 HEX  = **3** HEX, **3** DEC
 
-AF 30 - 8 degrees C positive (+8&deg;C), 30 HEX = 48 decimal
+2C - **4** degrees C positive (+4&deg;C), 2C HEX - 28 HEX  = **4** HEX, **4** DEC
 
-AF 31 - 9 degrees C positive (+9&deg;C), 31 HEX = 49 decimal
+2D - **5** degrees C positive (+5&deg;C), 2D HEX - 28 HEX  = **5** HEX, **5** DEC
 
-AF 32 - 10 degrees C positive (+10&deg;C), 31 HEX = 49 decimal
+2E - **6** degrees C positive (+6&deg;C), 2E HEX - 28 HEX  = **6** HEX, **6** DEC
 
-AF 3A - 12 degrees C positive (+12&deg;C), 3A HEX = 58 decimal
+2F - **7** degrees C positive (+7&deg;C), 2F HEX - 28 HEX  = **7** HEX, **7** DEC
+
+30 - **8** degrees C positive (+8&deg;C), 30 HEX - 28 HEX  = **8** HEX, **8** DEC
+
+31 - **9** degrees C positive (+9&deg;C), 31 HEX - 28 HEX = **9** HEX, **9** DEC
+
+32 - **10** degrees C positive (+10&deg;C), 32 HEX - 28 HEX = **A** HEX, **10** DEC
+
+3A - **12** degrees C positive (+12&deg;C), 3A HEX - 28 HEX = **12** HEX (but 58 – 40 = 18 in dec, which is right in math but wrong in this logic)
 
 558 8 FC FF FF 0 CF 0 BB BB - unknown, appears if navipad disconnected from bus, FF is mock data, meaning probable is health-chek
 
